@@ -4,6 +4,7 @@ import EpisodeList from '../views/episode-list.vue';
 import Episode from '../views/episode.vue';
 import Location from '../views/location.vue';
 import Character from '../views/character.vue';
+import Search from '../views/search.vue';
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/character/:id',
     name: 'Character',
     component: Character,
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search,
   },
 ];
 

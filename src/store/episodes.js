@@ -3,11 +3,16 @@ import { getResource, getAllResourcePages, toUrlIndexedForm } from '../api';
 const initialState = {
   loadingEpisodes: false,
   episodes: {},
+  searchingEpisodes: false,
+  searchUrls: [],
 };
 
 export const mutations = {
   setEpisodes(state, payload) {
     state.episodes = payload;
+  },
+  addSearchResultEpisodes(state, payload) {
+    state.searchUrls = [ ...state.searchUrls, payload];
   },
   setEpisode(state, payload) {
     state.episodes[payload.url] = payload;
@@ -15,8 +20,14 @@ export const mutations = {
   reset(state) {
     Object.assign(state, { ...initialState });
   },
+  resetSearch(state) {
+    state.searchUrls = [];
+  },
   toggleLoading(state, payload) {
     state.loadingEpisodes = payload;
+  },
+  toggleSearching(state, payload) {
+    state.searchingEpisodes = payload;
   },
 };
 
@@ -30,6 +41,21 @@ export const actions = {
       })
       .finally(() => {
         commit('toggleLoading', false);
+      });
+  },
+  searchEpisodes({ commit }, payload) {
+    commit('toggleSearching', true);
+    commit('resetSearch');
+
+    return getAllResourcePages(`episode/?name=${payload}`)
+      .then((res) => {
+        res.forEach((result) => {
+          commit('setEpisode', result)
+          commit('addSearchResultEpisodes', result.url);
+        })
+      })
+      .finally(() => {
+        commit('toggleSearching', false);
       });
   },
   getEpisode({ commit }, payload) {

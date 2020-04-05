@@ -52,6 +52,7 @@ export default {
     },
   },
   mounted() {
+    this.location = this.$store.state.locations.locations[this.resourceUrl];
     if (this.location === undefined) {
       this.fetchLocation();
     }

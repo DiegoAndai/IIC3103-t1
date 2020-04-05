@@ -1,16 +1,20 @@
 <template>
   <div>
     <template v-if="episode">
-      <router-link :to="`/episode/${episode.id}`" >
-        {{ episode.name }}
-      </router-link>
+      {{ episode.episode }}:
+      <episode-link :episode-url="episode.url" />
       aired on {{ episode.air_date }}
     </template>
   </div>
 </template>
 
 <script>
+import EpisodeLink from '../components/episode-link';
+
 export default {
+  components: {
+    EpisodeLink,
+  },
   props: {
     episodeUrl: {
       required: true,
