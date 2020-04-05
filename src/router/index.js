@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import EpisodeList from '../views/EpisodeList.vue';
-import Episode from '../views/Episode.vue';
-import Location from '../views/Location.vue';
-import Character from '../views/Character.vue';
+import EpisodeList from '../views/episode-list.vue';
+import Episode from '../views/episode.vue';
+import Location from '../views/location.vue';
+import Character from '../views/character.vue';
 
 Vue.use(VueRouter);
 

@@ -1,4 +1,4 @@
-import { getResource, formResourceUrl, toUrlIndexedForm } from '../api';
+import { getResource, getAllResourcePages, toUrlIndexedForm } from '../api';
 
 const initialState = {
   loadingEpisodes: false,
@@ -24,9 +24,9 @@ export const actions = {
   getEpisodes({ commit }) {
     commit('toggleLoading', true);
 
-    return getResource(formResourceUrl('episode'))
+    return getAllResourcePages('episode')
       .then((res) => {
-        commit('setEpisodes', toUrlIndexedForm(res.data.results));
+        commit('setEpisodes', toUrlIndexedForm(res));
       })
       .finally(() => {
         commit('toggleLoading', false);

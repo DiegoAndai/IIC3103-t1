@@ -5,15 +5,23 @@
       Loading...
     </template>
     <template v-else>
-      {{ episodes }}
+      <div v-for="episode in episodes" :key="episode.id">
+        <episode-row
+          :episode-url="episode.url"
+        />
+      </div>
     </template>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import EpisodeRow from '../components/episode-row.vue';
 
 export default {
+  components: {
+    EpisodeRow,
+  },
   computed: {
     ...mapState({
       episodes: (state) => state.episodes.episodes,

@@ -1,21 +1,43 @@
 <template>
   <div @key="`location-${this.$route.params.id}`">
-    <template v-if="location">
-      {{ location }}
-    </template>
-    <template v-else>
+    Location
+    <div v-if="location">
+      <img :src="location.image" />
+      <div>
+        Name: {{ location.name }}
+      </div>
+      <div>
+        Type: {{ location.type }}
+      </div>
+      <div>
+        Dimension: {{ location.dimension }}
+      </div>
+      <div>
+        Residents:
+        <div v-for="character in location.residents" :key="`location-${character}`">
+          <character-link
+            :character-url="character"
+          />
+        </div>
+      </div>
+    </div>
+    <div v-else>
       Loading...
-    </template>
+    </div>
   </div>
 </template>
 
 <script>
 import { formResourceUrl } from '../api';
+import CharacterLink from '../components/character-link';
 
 export default {
+  components: {
+    CharacterLink,
+  },
   data() {
     return {
-      location: null,
+      location: this.$store.state.locations.locations[this.resourceUrl],
     };
   },
   computed: {
@@ -30,7 +52,9 @@ export default {
     },
   },
   mounted() {
-    this.fetchLocation();
+    if (this.location === undefined) {
+      this.fetchLocation();
+    }
   },
 };
 </script>

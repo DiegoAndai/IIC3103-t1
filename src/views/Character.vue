@@ -1,18 +1,51 @@
 <template>
   <div @key="`character-${this.$route.params.id}`">
-    <template v-if="character">
-      {{ character }}
-    </template>
-    <template v-else>
+    Character
+    <div v-if="character">
+      <img :src="character.image" />
+      <div>
+        Name: {{ character.name }}
+      </div>
+      <div>
+        Status: {{ character.status }}
+      </div>
+      <div>
+        Species: {{ character.species }}
+      </div>
+      <div>
+        Type: {{ character.type }}
+      </div>
+      <div>
+        Gender: {{ character.gender }}
+      </div>
+      <div>
+        Origin: <location-link :location-url="character.location.url"/>
+      </div>
+      <div>
+        Episodes:
+        <div v-for="episodeUrl in character.episode" :key="`episode-${episodeUrl}`">
+          <episode-link
+            :episode-url="episodeUrl"
+          />
+        </div>
+      </div>
+    </div>
+    <div v-else>
       Loading...
-    </template>
+    </div>
   </div>
 </template>
 
 <script>
 import { formResourceUrl } from '../api';
+import EpisodeLink from '../components/episode-link';
+import LocationLink from '../components/location-link';
 
 export default {
+  components: {
+    EpisodeLink,
+    LocationLink,
+  },
   data() {
     return {
       character: null,
@@ -30,7 +63,10 @@ export default {
     },
   },
   mounted() {
-    this.fetchCharacter();
+    this.character = this.$store.state.characters.characters[this.resourceUrl];
+    if (this.character === undefined) {
+      this.fetchCharacter();
+    }
   },
 };
 </script>
