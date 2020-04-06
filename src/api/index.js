@@ -13,7 +13,6 @@ export function formResourceUrl(type, id = '') {
 }
 
 export function getResource(url) {
-  console.log(`fetching ${url}`);
   return axios.get(url);
 }
 

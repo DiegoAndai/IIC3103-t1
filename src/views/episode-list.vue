@@ -33,6 +33,7 @@ export default {
     ...mapState({
       episodes: (state) => state.episodes.episodes,
       loadingEpisodes: (state) => state.episodes.loadingEpisodes,
+      fetchedEpisodes: (state) => state.episodes.fetchedEpisodes,
     }),
   },
   methods: {
@@ -41,7 +42,9 @@ export default {
     },
   },
   mounted() {
-    this.fetchEpisodes();
+    if (!this.fetchedEpisodes) {
+      this.fetchEpisodes();
+    }
   },
 };
 </script>

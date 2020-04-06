@@ -2,6 +2,7 @@ import { getResource, getAllResourcePages, toUrlIndexedForm } from '../api';
 
 const initialState = {
   loadingEpisodes: false,
+  fetchedEpisodes: false,
   episodes: {},
   searchingEpisodes: false,
   searchUrls: [],
@@ -26,6 +27,9 @@ export const mutations = {
   toggleLoading(state, payload) {
     state.loadingEpisodes = payload;
   },
+  toggleFetched(state, payload) {
+    state.fetchedEpisodes = payload;
+  },
   toggleSearching(state, payload) {
     state.searchingEpisodes = payload;
   },
@@ -41,6 +45,7 @@ export const actions = {
       })
       .finally(() => {
         commit('toggleLoading', false);
+        commit('toggleFetched', true);
       });
   },
   searchEpisodes({ commit }, payload) {
