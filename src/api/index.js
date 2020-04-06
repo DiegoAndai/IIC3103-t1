@@ -25,5 +25,6 @@ async function recursiveGet(url, responses = []) {
 }
 
 export async function getAllResourcePages(type) {
-  return recursiveGet(`https://rickandmortyapi.com/api/${type}`);
+  const results = await recursiveGet(`https://rickandmortyapi.com/api/${type}`);
+  return results;
 }

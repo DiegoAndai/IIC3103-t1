@@ -1,8 +1,13 @@
 <template>
-  <div id="episode-list">
-    EpisodeList
+  <div
+    id="episode-list"
+    class="p-4 m-2 mb-4 bg-white rounded shadow-md"
+  >
+    <div class="text-center mb-2 text-xl font-normal">
+      Episode List
+    </div>
     <template v-if="loadingEpisodes">
-      Loading...
+      <loading />
     </template>
     <template v-else>
       <div v-for="episode in episodes" :key="episode.id">
@@ -17,10 +22,12 @@
 <script>
 import { mapState } from 'vuex';
 import EpisodeRow from '../components/episode-row.vue';
+import Loading from '../components/loading.vue';
 
 export default {
   components: {
     EpisodeRow,
+    Loading,
   },
   computed: {
     ...mapState({

@@ -1,18 +1,23 @@
 <template>
-  <div @key="`episode-${this.$route.params.id}`">
-    Episode
+  <div
+    @key="`episode-${this.$route.params.id}`"
+    class="p-4 m-2 mb-4 bg-white rounded shadow-md"
+  >
     <div v-if="episode">
-      <div>
-        Name: {{ episode.name }}
-      </div>
-      <div>
-        Aired: {{ episode.air_date }}
+      <div class="text-center mb-2">
+        <span class="text-xl font-normal">
+          {{ episode.name }}
+        </span>
+        (episode)
       </div>
       <div>
         Code: {{ episode.episode }}
       </div>
       <div>
-        Characters:
+        Aired on {{ episode.air_date }}
+      </div>
+      <div class="my-2 py-2 border-t border-b">
+        Featured characters:
         <div v-for="characterUrl in episode.characters" :key="`character-${characterUrl}`">
           <character-link
             :character-url="characterUrl"

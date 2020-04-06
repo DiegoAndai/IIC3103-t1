@@ -1,10 +1,14 @@
 <template>
-  <div @key="`location-${this.$route.params.id}`">
-    Location
+  <div
+    @key="`location-${this.$route.params.id}`"
+    class="p-4 m-2 mb-4 bg-white rounded shadow-md"
+  >
     <div v-if="location">
-      <img :src="location.image" />
-      <div>
-        Name: {{ location.name }}
+      <div class="text-center mb-2">
+        <span class="text-xl font-normal">
+          {{ location.name }}
+        </span>
+        (location)
       </div>
       <div>
         Type: {{ location.type }}
@@ -12,7 +16,7 @@
       <div>
         Dimension: {{ location.dimension }}
       </div>
-      <div>
+      <div class="my-2 py-2 border-t border-b">
         Residents:
         <div v-for="character in location.residents" :key="`location-${character}`">
           <character-link

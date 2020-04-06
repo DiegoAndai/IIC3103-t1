@@ -1,11 +1,16 @@
 <template>
-  <div @key="`character-${this.$route.params.id}`">
-    Character
+  <div
+    @key="`character-${this.$route.params.id}`"
+    class="p-4 m-2 mb-4 bg-white rounded shadow-md"
+  >
     <div v-if="character">
-      <img :src="character.image" />
-      <div>
-        Name: {{ character.name }}
+      <div class="text-center mb-2">
+        <span class="text-xl font-normal">
+          {{ character.name }}
+        </span>
+        (character)
       </div>
+      <img class="rounded w-64 h-64 mb-2 bg-gray-200" :src="character.image" />
       <div>
         Status: {{ character.status }}
       </div>
@@ -21,8 +26,8 @@
       <div>
         Origin: <location-link :location-url="character.location.url"/>
       </div>
-      <div>
-        Episodes:
+      <div class="my-2 py-2 border-t border-b">
+        Featured in:
         <div v-for="episodeUrl in character.episode" :key="`episode-${episodeUrl}`">
           <episode-link
             :episode-url="episodeUrl"

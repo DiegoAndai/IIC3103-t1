@@ -19,7 +19,7 @@ export const mutations = {
   resetSearch(state) {
     state.searchUrls = [];
   },
-  toggleSearching(state, payload) {
+  toggleCharacterSearching(state, payload) {
     state.searchingCharacters = payload;
   },
 };
@@ -32,7 +32,7 @@ export const actions = {
       });
   },
   searchCharacters({ commit }, payload) {
-    commit('toggleSearching', true);
+    commit('toggleCharacterSearching', true);
     commit('resetSearch');
 
     return getAllResourcePages(`character/?name=${payload}`)
@@ -41,9 +41,10 @@ export const actions = {
           commit('setCharacter', result)
           commit('addSearchResultCharacters', result.url);
         })
+
       })
       .finally(() => {
-        commit('toggleSearching', false);
+        commit('toggleCharacterSearching', false);
       });
   },
 };
