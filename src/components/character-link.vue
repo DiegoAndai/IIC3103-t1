@@ -1,6 +1,6 @@
 <template>
   <router-link :to="`/character/${character.id}`" v-if="character">
-    <span class="text-blue-600 hover:font-normal">
+    <span class="text-blue-600 hover:underline">
       {{ character.name }}
     </span>
   </router-link>

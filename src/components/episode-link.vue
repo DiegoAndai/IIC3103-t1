@@ -1,6 +1,6 @@
 <template>
   <router-link :to="`/episode/${episode.id}`" v-if="episode">
-    <span class="text-blue-600 hover:font-normal">
+    <span class="text-blue-600 hover:underline">
       {{ episode.name }}
     </span>
   </router-link>

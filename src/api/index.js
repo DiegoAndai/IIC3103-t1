@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const API_BASE_URL = 'https://integracion-rick-morty-api.herokuapp.com/api'
+
 export function toUrlIndexedForm(results) {
   return results.reduce((urlIndexed, resource) => (
     { ...urlIndexed, [resource.url]: resource }
@@ -7,7 +9,7 @@ export function toUrlIndexedForm(results) {
 }
 
 export function formResourceUrl(type, id = '') {
-  return `https://rickandmortyapi.com/api/${type}/${id}`;
+  return `${API_BASE_URL}/${type}/${id}`;
 }
 
 export function getResource(url) {
@@ -25,6 +27,6 @@ async function recursiveGet(url, responses = []) {
 }
 
 export async function getAllResourcePages(type) {
-  const results = await recursiveGet(`https://rickandmortyapi.com/api/${type}`);
+  const results = await recursiveGet(`${API_BASE_URL}/${type}`);
   return results;
 }

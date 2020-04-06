@@ -1,6 +1,6 @@
 <template>
   <router-link :to="`/location/${location.id}`" v-if="location">
-    <span class="text-blue-600 hover:font-normal">
+    <span class="text-blue-600 hover:underline">
       {{ location.name }}
     </span>
   </router-link>

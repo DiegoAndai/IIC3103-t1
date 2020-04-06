@@ -1,11 +1,8 @@
 <template>
   <div>
     <template v-if="episode">
-      <span class="font-normal">
-        {{ episode.episode }}:
-      </span>
-      <episode-link :episode-url="episode.url" />,
-      aired on {{ episode.air_date }}
+      <episode-link :episode-url="episode.url" />
+      ({{ episode.episode }}), aired on {{ episode.air_date }}
     </template>
   </div>
 </template>
