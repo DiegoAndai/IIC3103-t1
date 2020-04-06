@@ -26,7 +26,7 @@
       </div>
     </div>
     <div v-else>
-      Loading...
+      <loading />
     </div>
   </div>
 </template>
@@ -34,10 +34,12 @@
 <script>
 import { formResourceUrl } from '../api';
 import CharacterLink from '../components/character-link';
+import Loading from '../components/loading';
 
 export default {
   components: {
     CharacterLink,
+    Loading,
   },
   data() {
     return {

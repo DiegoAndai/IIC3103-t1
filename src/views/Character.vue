@@ -3,14 +3,14 @@
     @key="`character-${this.$route.params.id}`"
     class="p-4 m-2 mb-4 bg-white rounded shadow-md"
   >
-    <div v-if="character">
+    <div v-if="character" class="flex flex-col ">
       <div class="text-center mb-2">
         <span class="text-xl font-normal">
           {{ character.name }}
         </span>
         (character)
       </div>
-      <img class="rounded w-64 h-64 mb-2 bg-gray-200" :src="character.image" />
+      <img class="self-center rounded w-64 h-64 mb-2 bg-gray-200" :src="character.image" />
       <div>
         Status: {{ character.status }}
       </div>
@@ -36,7 +36,7 @@
       </div>
     </div>
     <div v-else>
-      Loading...
+      <loading />
     </div>
   </div>
 </template>
@@ -45,11 +45,13 @@
 import { formResourceUrl } from '../api';
 import EpisodeLink from '../components/episode-link';
 import LocationLink from '../components/location-link';
+import Loading from '../components/loading';
 
 export default {
   components: {
     EpisodeLink,
     LocationLink,
+    Loading,
   },
   data() {
     return {
